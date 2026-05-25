@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>I love my family</title>
+    <style>
+      body {
+        background-color: #e6f7ff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 40px;
+        padding-top: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        max-width: 700px;
+        width: 100%;
+      }
+
+      button {
+        background-color: #7b2d8b;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #5a1f6b;
+      }
+
+      form {
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      label {
+        font-size: 15px;
+        color: #333333;
+        font-weight: bold;
+      }
+
+      input, textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 15px;
+        border: 1px solid #cccccc;
+        border-radius: 6px;
+        margin-top: 6px;
+        box-sizing: border-box;
+      }
+
+      input:focus, textarea:focus {
+        outline: none;
+        border-color: #7b2d8b;
+      }
+
+      nav {
+        width: 100%;
+        background-color: #7b2d8b;
+        padding: 14px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      nav a:hover {
+        color: #f9d4ff;
+      }
+
+      body.dark {
+        background-color: #1a1a2e;
+      }
+
+      body.dark h1,
+      body.dark h2,
+      body.dark p,
+      body.dark li,
+      body.dark label {
+        color: #ffffff;
+      }
+
+      body.dark .container {
+        background-color: #16213e;
+        padding: 30px;
+        border-radius: 12px;
+      }
+
+      body.dark input,
+      body.dark textarea {
+        background-color: #0f3460;
+        color: white;
+        border-color: #7b2d8b;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="calculator.html">Calculator</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button onclick="toggleDarkMode()" style="background: transparent; border: 2px solid white; padding: 4px 12px; font-size: 13px; border-radius: 20px; width: auto;">🌙 Dark Mode</button>
+    </nav>
+
+    <div class="container">
+
+      <h1 id="home">Hi, I'm Dionne — I'm a coder!</h1>
+
+      <div id="goalDisplay" style="background-color: #7b2d8b; color: white; padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 18px; text-align: center;">
+        Click the button to see your goals!
+      </div>
+
+      <button onclick="showGoal()">Show My Goals</button>
+      <br><br>
+
+      <button onclick="listAllGoals()">List All Goals</button>
+      <br><br>
+
+      <ul id="goalsList"></ul>
+
+      <h2>Live Word Counter</h2>
+      <textarea id="wordInput" rows="4" placeholder="Start typing anything here..." oninput="countWords()"></textarea>
+      <p id="wordCount" style="color: #7b2d8b; font-weight: bold; font-size: 18px;">Words: 0</p>
+
+      <h2 id="about">I'm learning to code.</h2>
+      <p>I am an Executive Assistant/Sales Agent for 2 CPR training companies in the US.</p>
+      <ul>
+        <li>I want to learn how to code</li>
+        <li>I want to master how to code</li>
+        <li>I want to be the best coder in the world</li>
+      </ul>
+
+      <a href="https://www.google.com">Click here to visit Google</a>
+      <br><br>
+
+      <button onclick="showMessage()">Contact Me</button>
+      <br><br>
+
+      <h2 id="contact">Contact Me</h2>
+      <form id="contactForm">
+        <label>Your Name</label><br>
+        <input type="text" id="nameField" placeholder="Enter your name"><br><br>
+
+        <label>Your Email</label><br>
+        <input type="email" id="emailField" placeholder="Enter your email"><br><br>
+
+        <label>Your Message</label><br>
+        <textarea id="messageField" rows="5" placeholder="Write your message here..." oninput="countChars()"></textarea>
+        <p id="charCount" style="color: #7b2d8b; font-size: 13px; text-align: right; margin-top: 4px;">200 characters remaining</p>
+
+        <button type="button" onclick="validateForm()">Send Message</button>
+      </form>
+
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg" alt="a red apple" width="300">
+
+    </div>
+
+    <script>
+      function showMessage() {
+        let name = prompt("What's your name, superstar?");
+        alert("Hi " + name + "! Thanks for visiting Dionne's page!");
+      }
+
+      function validateForm() {
+        let name = document.getElementById("nameField").value;
+        let email = document.getElementById("emailField").value;
+        let message = document.getElementById("messageField").value;
+
+        if (name === "" || email === "" || message === "") {
+          alert("Please fill in all fields before sending!");
+          return;
+        }
+
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        if (!emailPattern.test(email)) {
+          alert("Please enter a valid email address! (example: name@email.com)");
+          return;
+        }
+
+        alert("Thank you " + name + "! Your message has been sent. I'll get back to you soon!");
+      }
+
+      let goals = [
+        "I want to learn how to code 💻",
+        "I want to master how to code 🎯",
+        "I want to be the best coder in the world 🏆",
+        "I want to build apps that help people 🌍"
+      ];
+
+      let currentGoal = 0;
+
+      function showGoal() {
+        document.getElementById("goalDisplay").innerText = goals[currentGoal];
+        currentGoal++;
+        if (currentGoal >= goals.length) {
+          currentGoal = 0;
+        }
+      }
+
+      function listAllGoals() {
+        let list = document.getElementById("goalsList");
+        list.innerHTML = "";
+        for (let i = 0; i < goals.length; i++) {
+          let item = document.createElement("li");
+          item.innerText = goals[i];
+          list.appendChild(item);
+        }
+      }
+
+      function countWords() {
+        let text = document.getElementById("wordInput").value;
+        if (text.trim() === "") {
+          document.getElementById("wordCount").innerText = "Words: 0";
+          return;
+        }
+        let words = text.trim().split(" ");
+        document.getElementById("wordCount").innerText = "Words: " + words.length;
+      }
+
+      function toggleDarkMode() {
+        let body = document.body;
+        body.classList.toggle("dark");
+        let button = document.querySelector("nav button");
+        if (body.classList.contains("dark")) {
+          button.innerText = "☀️ Light Mode";
+        } else {
+          button.innerText = "🌙 Dark Mode";
+        }
+      }
+
+      function countChars() {
+        let message = document.getElementById("messageField").value;
+        let remaining = 200 - message.length;
+        let display = document.getElementById("charCount");
+        display.innerText = remaining + " characters remaining";
+        if (remaining < 20) {
+          display.style.color = "#cc0000";
+        } else if (remaining < 50) {
+          display.style.color = "#ff6b00";
+        } else {
+          display.style.color = "#7b2d8b";
+        }
+      }
+    </script>
+
+  </body>
+</html>

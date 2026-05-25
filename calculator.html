@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CPR Training ROI Calculator</title>
+    <style>
+      body {
+        background-color: #e6f7ff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 40px;
+        padding-top: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        max-width: 700px;
+        width: 100%;
+      }
+
+      nav {
+        width: 100%;
+        background-color: #7b2d8b;
+        padding: 14px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      nav a:hover {
+        color: #f9d4ff;
+      }
+
+      h1 {
+        color: #7b2d8b;
+        font-size: 36px;
+      }
+
+      h2 {
+        color: #444444;
+      }
+
+      label {
+        font-size: 15px;
+        color: #333333;
+        font-weight: bold;
+      }
+
+      input, select {
+        width: 100%;
+        padding: 10px;
+        font-size: 15px;
+        border: 1px solid #cccccc;
+        border-radius: 6px;
+        margin-top: 6px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+      }
+
+      input:focus, select:focus {
+        outline: none;
+        border-color: #7b2d8b;
+      }
+
+      button {
+        background-color: #7b2d8b;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      button:hover {
+        background-color: #5a1f6b;
+      }
+
+      .result-box {
+        display: none;
+        background-color: #7b2d8b;
+        color: white;
+        padding: 24px;
+        border-radius: 12px;
+        margin-top: 30px;
+      }
+
+      .result-box h2 {
+        color: white;
+        margin-top: 0;
+      }
+
+      .stat {
+        background-color: #5a1f6b;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin: 10px 0;
+        font-size: 16px;
+      }
+
+      body.dark {
+        background-color: #1a1a2e;
+      }
+
+      body.dark h1,
+      body.dark h2,
+      body.dark p,
+      body.dark label {
+        color: #ffffff;
+      }
+
+      body.dark .container {
+        background-color: #16213e;
+        padding: 30px;
+        border-radius: 12px;
+      }
+
+      body.dark input,
+      body.dark select {
+        background-color: #0f3460;
+        color: white;
+        border-color: #7b2d8b;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="calculator.html">Calculator</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+      <button onclick="toggleDarkMode()" style="background: transparent; border: 2px solid white; padding: 4px 12px; font-size: 13px; border-radius: 20px; width: auto; cursor: pointer;">🌙 Dark Mode</button>
+    </nav>
+
+    <div class="container">
+      <h1>💓 CPR Training ROI Calculator</h1>
+      <p>Find out the value of CPR training for your organization.</p>
+
+      <label>Number of Employees</label>
+      <input type="number" id="employees" placeholder="e.g. 50" min="1">
+
+      <label>Industry</label>
+      <select id="industry">
+        <option value="">Select your industry</option>
+        <option value="healthcare">Healthcare</option>
+        <option value="education">Education</option>
+        <option value="corporate">Corporate / Office</option>
+        <option value="retail">Retail</option>
+        <option value="construction">Construction</option>
+      </select>
+
+      <label>Training Budget (USD)</label>
+      <input type="number" id="budget" placeholder="e.g. 1000" min="0">
+
+      <button onclick="calculate()">Calculate My ROI</button>
+
+      <div class="result-box" id="resultBox">
+        <h2>📊 Your Results</h2>
+        <div class="stat" id="costPerEmployee"></div>
+        <div class="stat" id="packageRecommended"></div>
+        <div class="stat" id="livesStat"></div>
+        <div class="stat" id="budgetStat"></div>
+      </div>
+    </div>
+
+    <script>
+      function calculate() {
+        let employees = parseInt(document.getElementById("employees").value);
+        let industry = document.getElementById("industry").value;
+        let budget = parseInt(document.getElementById("budget").value);
+
+        if (!employees || !industry || !budget) {
+          alert("Please fill in all fields!");
+          return;
+        }
+
+        let costPerPerson = (budget / employees).toFixed(2);
+
+        let trainingPackage = "";
+        if (employees <= 10) {
+          trainingPackage = "⭐ Basic Group Training — perfect for small teams";
+        } else if (employees <= 50) {
+          trainingPackage = "⭐⭐ Standard Package — ideal for your team size";
+        } else {
+          trainingPackage = "⭐⭐⭐ Enterprise Package — full organization coverage";
+        }
+
+        let lives = Math.round(employees * 0.15);
+
+        let budgetMessage = "";
+        if (budget < 500) {
+          budgetMessage = "💡 Consider increasing budget for full team coverage";
+        } else if (budget < 2000) {
+          budgetMessage = "✅ Good budget range for effective training";
+        } else {
+          budgetMessage = "🏆 Excellent investment in your team's safety!";
+        }
+
+        document.getElementById("costPerEmployee").innerText = "💰 Cost per employee: $" + costPerPerson;
+        document.getElementById("packageRecommended").innerText = "📦 Recommended: " + trainingPackage;
+        document.getElementById("livesStat").innerText = "❤️ Estimated " + lives + " employees trained to save lives";
+        document.getElementById("budgetStat").innerText = budgetMessage;
+
+        document.getElementById("resultBox").style.display = "block";
+      }
+
+      function toggleDarkMode() {
+        let body = document.body;
+        body.classList.toggle("dark");
+        let button = document.querySelector("nav button");
+        if (body.classList.contains("dark")) {
+          button.innerText = "☀️ Light Mode";
+        } else {
+          button.innerText = "🌙 Dark Mode";
+        }
+      }
+    </script>
+
+  </body>
+</html>
