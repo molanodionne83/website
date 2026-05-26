@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CPR Class Schedule</title>
+    <style>
+      body {
+        background-color: #e6f7ff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 40px;
+        padding-top: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        max-width: 700px;
+        width: 100%;
+      }
+
+      nav {
+        width: 100%;
+        background-color: #7b2d8b;
+        padding: 14px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      nav a:hover {
+        color: #f9d4ff;
+      }
+
+      h1 {
+        color: #7b2d8b;
+        font-size: 36px;
+      }
+
+      h2 {
+        color: #444444;
+        margin-top: 30px;
+      }
+
+      .class-card {
+        background-color: white;
+        border: 1px solid #dddddd;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 15px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .class-info h3 {
+        color: #7b2d8b;
+        margin: 0 0 6px 0;
+        font-size: 18px;
+      }
+
+      .class-info p {
+        color: #555555;
+        margin: 4px 0;
+        font-size: 14px;
+      }
+
+      .class-badge {
+        background-color: #e6f7ff;
+        color: #7b2d8b;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .class-badge.full {
+        background-color: #ffe6e6;
+        color: #cc0000;
+      }
+
+      button {
+        background-color: #7b2d8b;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 8px;
+      }
+
+      button:hover {
+        background-color: #5a1f6b;
+      }
+
+      button.full {
+        background-color: #cccccc;
+        cursor: not-allowed;
+      }
+
+      .filter-row {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        background-color: white;
+        color: #7b2d8b;
+        border: 2px solid #7b2d8b;
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        width: auto;
+      }
+
+      .filter-btn.active {
+        background-color: #7b2d8b;
+        color: white;
+      }
+
+      .filter-btn:hover {
+        background-color: #7b2d8b;
+        color: white;
+      }
+
+      body.dark {
+        background-color: #1a1a2e;
+      }
+
+      body.dark h1,
+      body.dark h2,
+      body.dark p {
+        color: #ffffff;
+      }
+
+      body.dark .class-card {
+        background-color: #16213e;
+        border-color: #7b2d8b;
+      }
+
+      body.dark .class-info p {
+        color: #cccccc;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="calculator.html">Calculator</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+      <button onclick="toggleDarkMode()" style="background: transparent; border: 2px solid white; padding: 4px 12px; font-size: 13px; border-radius: 20px; width: auto; cursor: pointer;">🌙 Dark Mode</button>
+    </nav>
+
+    <div class="container">
+      <h1>📅 CPR Class Schedule</h1>
+      <p>Browse and book available CPR training sessions.</p>
+
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterClasses('all', this)">All Classes</button>
+        <button class="filter-btn" onclick="filterClasses('basic', this)">Basic</button>
+        <button class="filter-btn" onclick="filterClasses('advanced', this)">Advanced</button>
+        <button class="filter-btn" onclick="filterClasses('online', this)">Online</button>
+      </div>
+
+      <div id="classList"></div>
+    </div>
+
+    <script>
+      const classes = [
+        {
+          id: 1,
+          name: "Basic CPR & AED",
+          date: "June 3, 2026",
+          time: "9:00 AM — 12:00 PM",
+          location: "Manila Training Center",
+          spots: 8,
+          total: 20,
+          type: "basic"
+        },
+        {
+          id: 2,
+          name: "Advanced Life Support",
+          date: "June 7, 2026",
+          time: "1:00 PM — 5:00 PM",
+          location: "Davao Training Center",
+          spots: 0,
+          total: 15,
+          type: "advanced"
+        },
+        {
+          id: 3,
+          name: "Online CPR Certification",
+          date: "June 10, 2026",
+          time: "Flexible — self paced",
+          location: "Online / Zoom",
+          spots: 50,
+          total: 100,
+          type: "online"
+        },
+        {
+          id: 4,
+          name: "Basic CPR for Teachers",
+          date: "June 14, 2026",
+          time: "8:00 AM — 11:00 AM",
+          location: "Cebu Training Center",
+          spots: 3,
+          total: 25,
+          type: "basic"
+        },
+        {
+          id: 5,
+          name: "Advanced Pediatric CPR",
+          date: "June 20, 2026",
+          time: "10:00 AM — 3:00 PM",
+          location: "Manila Training Center",
+          spots: 12,
+          total: 20,
+          type: "advanced"
+        }
+      ];
+
+      function renderClasses(filter) {
+        let list = document.getElementById("classList");
+        list.innerHTML = "";
+
+        let filtered = filter === "all"
+          ? classes
+          : classes.filter(c => c.type === filter);
+
+        filtered.forEach(function(c) {
+          let isFull = c.spots === 0;
+          let card = document.createElement("div");
+          card.className = "class-card";
+
+          card.innerHTML = `
+            <div class="class-info">
+              <h3>${c.name}</h3>
+              <p>📅 ${c.date}</p>
+              <p>⏰ ${c.time}</p>
+              <p>📍 ${c.location}</p>
+              <p>👥 ${c.spots} of ${c.total} spots available</p>
+              <button class="${isFull ? 'full' : ''}"
+                onclick="${isFull ? '' : `bookClass(${c.id})`}"
+                ${isFull ? 'disabled' : ''}>
+                ${isFull ? 'Class Full' : 'Book Now'}
+              </button>
+            </div>
+            <div class="class-badge ${isFull ? 'full' : ''}">
+              ${isFull ? '🔴 Full' : '🟢 Open'}
+            </div>
+          `;
+
+          list.appendChild(card);
+        });
+      }
+
+      function filterClasses(type, btn) {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderClasses(type);
+      }
+
+      function bookClass(id) {
+        let found = classes.find(c => c.id === id);
+        let name = prompt("Enter your name to book " + found.name + ":");
+        if (name) {
+          found.spots--;
+          alert("✅ Booked! Thank you " + name + "!\n\n" +
+                "Class: " + found.name + "\n" +
+                "Date: " + found.date + "\n" +
+                "Time: " + found.time + "\n" +
+                "Location: " + found.location);
+          renderClasses("all");
+        }
+      }
+
+      function toggleDarkMode() {
+        let body = document.body;
+        body.classList.toggle("dark");
+        let button = document.querySelector("nav button");
+        if (body.classList.contains("dark")) {
+          button.innerText = "☀️ Light Mode";
+        } else {
+          button.innerText = "🌙 Dark Mode";
+        }
+      }
+
+      renderClasses("all");
+    </script>
+
+  </body>
+</html>
