@@ -109,6 +109,58 @@
         color: white;
         border-color: #7b2d8b;
       }
+      /* animations */
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0%   { transform: scale(1); }
+        50%  { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+
+      .fade-in {
+        animation: fadeIn 1s ease forwards;
+      }
+
+      .slide-up {
+        animation: slideUp 0.8s ease forwards;
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+
+      .card-hover {
+        transition: transform 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-5px);
+      }
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .scroll-animate.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
     </style>
   </head>
 
@@ -124,11 +176,11 @@
 
     <div class="container">
 
-      <h1 id="home">Hi, I'm Dionne — I'm a coder!</h1>
+      <h1 id="home" class="fade-in">Hi, I'm Dionne — I'm a coder!</h1>
 
-      <div id="goalDisplay" style="background-color: #7b2d8b; color: white; padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 18px; text-align: center;">
-        Click the button to see your goals!
-      </div>
+<div id="goalDisplay" class="slide-up" style="background-color: #7b2d8b; color: white; padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 18px; text-align: center;">
+  Click the button to see your goals!
+</div>
 
       <button onclick="showGoal()">Show My Goals</button>
       <br><br>
@@ -138,11 +190,11 @@
 
       <ul id="goalsList"></ul>
 
-      <h2>Live Word Counter</h2>
+      <h2 class="scroll-animate">Live Word Counter</h2>
       <textarea id="wordInput" rows="4" placeholder="Start typing anything here..." oninput="countWords()"></textarea>
       <p id="wordCount" style="color: #7b2d8b; font-weight: bold; font-size: 18px;">Words: 0</p>
 
-      <h2 id="about">I'm learning to code.</h2>
+      <h2 id="about" class="scroll-animate">I'm learning to code.</h2>
       <p>I am an Executive Assistant/Sales Agent for 2 CPR training companies in the US.</p>
       <ul>
         <li>I want to learn how to code</li>
@@ -153,11 +205,11 @@
       <a href="https://www.google.com">Click here to visit Google</a>
       <br><br>
 
-      <button onclick="showMessage()">Contact Me</button>
+      <button onclick="showMessage()" class="pulse">Contact Me</button>
       <br><br>
 
-      <h2 id="contact">Contact Me</h2>
-      <form id="contactForm">
+      <h2 id="contact" class="scroll-animate">Contact Me</h2>
+      <form id="contactForm" class="card-hover">
         <label>Your Name</label><br>
         <input type="text" id="nameField" placeholder="Enter your name"><br><br>
 
@@ -171,8 +223,8 @@
         <button type="button" onclick="validateForm()">Send Message</button>
       </form>
 
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg" alt="a red apple" width="300">
-
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg" alt="a red apple" width="300" class="scroll-animate">
+    
     </div>
 
     <script>
@@ -261,6 +313,20 @@
           display.style.color = "#7b2d8b";
         }
       }
+      // scroll animations
+      function checkScroll() {
+        let elements = document.querySelectorAll(".scroll-animate");
+        elements.forEach(function(el) {
+          let position = el.getBoundingClientRect().top;
+          let windowHeight = window.innerHeight;
+          if (position < windowHeight - 100) {
+            el.classList.add("visible");
+          }
+        });
+      }
+
+      window.addEventListener("scroll", checkScroll);
+      checkScroll();
     </script>
 
   </body>
