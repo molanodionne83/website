@@ -417,16 +417,14 @@
         document.getElementById("wordCount").innerText = `Words: ${words.length}`;
       };
 
-      function toggleDarkMode() {
-        let body = document.body;
-        body.classList.toggle("dark");
-        let button = document.querySelector("nav button");
-        if (body.classList.contains("dark")) {
-          button.innerText = "☀️ Light Mode";
-        } else {
-          button.innerText = "🌙 Dark Mode";
-        }
-      }
+      const toggleDarkMode = () => {
+  let body = document.body;
+  body.classList.toggle("dark");
+  let button = document.querySelector("nav button");
+  button.innerText = body.classList.contains("dark")
+    ? "☀️ Light Mode"
+    : "🌙 Dark Mode";
+}
 
       const countChars = () => {
         let message = document.getElementById("messageField").value;
@@ -442,16 +440,16 @@
         }
       };
       // scroll animations
-      function checkScroll() {
-        let elements = document.querySelectorAll(".scroll-animate");
-        elements.forEach(function (el) {
-          let position = el.getBoundingClientRect().top;
-          let windowHeight = window.innerHeight;
-          if (position < windowHeight - 100) {
-            el.classList.add("visible");
-          }
-        });
-      }
+      const checkScroll = () => {
+  let elements = document.querySelectorAll(".scroll-animate");
+  elements.forEach(el => {
+    let position = el.getBoundingClientRect().top;
+    let windowHeight = window.innerHeight;
+    if (position < windowHeight - 100) {
+      el.classList.add("visible");
+    }
+  });
+}
 
       window.addEventListener("scroll", checkScroll);
       checkScroll();
