@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dionne Molano — Operations & Tech Specialist. 15+ years experience in operations management, CRM, and web development. Available for hire." />
   <title>Dionne Molano — Operations & Tech Specialist</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
@@ -11,9 +12,7 @@
     :root {
       --purple: #7b2d8b;
       --purple-dark: #5a1f6b;
-      --purple-light: #f0e6ff;
       --accent: #00d4aa;
-      --accent-dark: #00a884;
       --dark: #0d0d1a;
       --dark2: #13132a;
       --dark3: #1c1c3a;
@@ -29,6 +28,7 @@
       background-color: var(--dark);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     /* LOADER */
@@ -144,11 +144,12 @@
       animation: blink 1.5s infinite;
     }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
     .hero h1 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(2.8rem, 6vw, 5rem);
       font-weight: 700;
-      line-height: 1.1;
+      line-height: 1.15;
       color: var(--white);
       margin-bottom: 24px;
     }
@@ -192,16 +193,16 @@
       transition: all 0.2s;
       display: inline-block;
     }
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
     .hero-stats {
       display: flex; gap: 48px;
       margin-top: 64px;
       padding-top: 40px;
       border-top: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
     }
+    .stat-item { min-width: 110px; }
     .stat-num {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 2.2rem;
@@ -209,7 +210,7 @@
       color: var(--white);
     }
     .stat-num span { color: var(--accent); }
-    .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
 
     /* SECTIONS */
     section { padding: 100px 60px; }
@@ -237,11 +238,11 @@
       margin-bottom: 60px;
     }
 
-    /* WHAT I DO */
+    /* SERVICES */
     #services { background: var(--dark2); }
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 24px;
     }
     .service-card {
@@ -249,7 +250,7 @@
       border: 1px solid rgba(255,255,255,0.06);
       border-radius: 16px;
       padding: 32px;
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease, border-color 0.3s ease;
       position: relative;
       overflow: hidden;
     }
@@ -275,13 +276,12 @@
 
     /* EXPERIENCE */
     #experience { background: var(--dark); }
-    .exp-timeline { display: flex; flex-direction: column; gap: 0; max-width: 760px; }
+    .exp-timeline { display: flex; flex-direction: column; max-width: 760px; }
     .exp-item {
       display: grid;
       grid-template-columns: 120px 1px 1fr;
       gap: 0 32px;
       padding-bottom: 48px;
-      position: relative;
     }
     .exp-year {
       font-family: 'Space Grotesk', sans-serif;
@@ -305,7 +305,6 @@
       border-radius: 50%;
       box-shadow: 0 0 12px var(--accent);
     }
-    .exp-body { padding-top: 0; }
     .exp-role {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.05rem;
@@ -324,12 +323,13 @@
     /* SKILLS */
     #skills { background: var(--dark2); }
     .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .skill-group { margin-bottom: 36px; }
     .skill-group-title {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1rem;
       font-weight: 600;
       color: var(--white);
-      margin-bottom: 24px;
+      margin-bottom: 16px;
       padding-bottom: 12px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
@@ -342,7 +342,7 @@
       border-radius: 100px;
       font-size: 0.82rem;
       font-weight: 500;
-      transition: all 0.2s;
+      transition: background 0.2s, color 0.2s;
     }
     .skill-tag:hover { background: rgba(123,45,139,0.35); color: var(--white); }
     .skill-tag.code {
@@ -351,7 +351,7 @@
       color: var(--accent);
     }
 
-    /* CODING SHOWCASE */
+    /* PROJECTS */
     #coding { background: var(--dark); }
     .coding-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
     .project-card {
@@ -359,7 +359,8 @@
       border: 1px solid rgba(255,255,255,0.06);
       border-radius: 16px;
       overflow: hidden;
-      transition: all 0.3s;
+      transition: transform 0.3s, border-color 0.3s;
+      display: flex; flex-direction: column;
     }
     .project-card:hover { transform: translateY(-4px); border-color: rgba(0,212,170,0.2); }
     .project-header {
@@ -369,19 +370,19 @@
       display: flex; justify-content: space-between; align-items: flex-start;
     }
     .project-icon { font-size: 2rem; }
-    .project-links { display: flex; gap: 12px; }
+    .project-links { display: flex; gap: 12px; align-items: center; }
     .project-links a {
       color: var(--text-muted);
       text-decoration: none;
       font-size: 0.8rem;
       font-weight: 500;
-      transition: color 0.2s;
       border: 1px solid rgba(255,255,255,0.1);
       padding: 4px 12px;
       border-radius: 4px;
+      transition: color 0.2s, border-color 0.2s;
     }
     .project-links a:hover { color: var(--accent); border-color: var(--accent); }
-    .project-body { padding: 28px; }
+    .project-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
     .project-body h3 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.1rem;
@@ -389,8 +390,8 @@
       color: var(--white);
       margin-bottom: 10px;
     }
-    .project-body p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; margin-bottom: 20px; }
-    .project-tech { display: flex; flex-wrap: wrap; gap: 8px; }
+    .project-body p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; margin-bottom: 20px; flex: 1; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
     .tech-badge {
       background: rgba(0,212,170,0.08);
       border: 1px solid rgba(0,212,170,0.2);
@@ -405,14 +406,16 @@
     /* CONTACT */
     #contact { background: var(--dark2); }
     .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-    .contact-info p { color: var(--text-muted); line-height: 1.8; margin-bottom: 36px; }
+    .contact-info > p { color: var(--text-muted); line-height: 1.8; margin-bottom: 36px; }
     .contact-details { display: flex; flex-direction: column; gap: 16px; }
     .contact-item {
       display: flex; align-items: center; gap: 14px;
       color: var(--text-muted);
       font-size: 0.9rem;
     }
-    .contact-item .ci-icon {
+    .contact-item a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .contact-item a:hover { color: var(--white); }
+    .ci-icon {
       width: 40px; height: 40px;
       background: rgba(123,45,139,0.15);
       border: 1px solid rgba(123,45,139,0.3);
@@ -422,7 +425,10 @@
     }
     .contact-form { display: flex; flex-direction: column; gap: 16px; }
     .form-group { display: flex; flex-direction: column; gap: 8px; }
-    .form-group label { font-size: 0.82rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.5px; }
+    .form-group label {
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--text-muted); letter-spacing: 0.5px;
+    }
     .form-group input,
     .form-group textarea {
       background: var(--dark3);
@@ -435,13 +441,12 @@
       transition: border-color 0.2s;
       width: 100%;
     }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text-muted); opacity: 0.6; }
     .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-    .form-group textarea { resize: vertical; min-height: 120px; }
-    .char-counter { font-size: 0.75rem; color: var(--text-muted); text-align: right; }
+    .form-group textarea:focus { outline: none; border-color: var(--accent); }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .char-counter { font-size: 0.75rem; color: var(--text-muted); text-align: right; transition: color 0.2s; }
     .submit-btn {
       background: linear-gradient(135deg, var(--purple), var(--accent));
       color: white;
@@ -453,6 +458,7 @@
       cursor: pointer;
       font-family: 'Inter', sans-serif;
       transition: transform 0.2s, box-shadow 0.2s;
+      width: 100%;
     }
     .submit-btn:hover {
       transform: translateY(-2px);
@@ -485,9 +491,12 @@
       nav.scrolled { padding: 12px 24px; }
       .nav-links { display: none; }
       .hero { padding: 100px 24px 60px; }
-      .hero-stats { gap: 28px; flex-wrap: wrap; }
+      .hero h1 { line-height: 1.25; }
+      .hero-stats { gap: 24px; }
       section { padding: 70px 24px; }
-      .skills-layout { grid-template-columns: 1fr; gap: 36px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 80px 1px 1fr; gap: 0 16px; }
+      .skills-layout { grid-template-columns: 1fr; gap: 0; }
       .contact-layout { grid-template-columns: 1fr; gap: 40px; }
       footer { padding: 30px 24px; flex-direction: column; text-align: center; }
     }
@@ -495,13 +504,13 @@
 </head>
 <body>
 
-<div id="loader">
+<div id="loader" aria-hidden="true">
   <div class="loader-name">DIONNE MOLANO</div>
   <div class="loader-bar"><div class="loader-fill"></div></div>
 </div>
 
-<nav id="navbar">
-  <a href="#" class="nav-logo">DM<span>.</span></a>
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <a href="#home" class="nav-logo">DM<span>.</span></a>
   <div class="nav-links">
     <a href="#services">Services</a>
     <a href="#experience">Experience</a>
@@ -511,7 +520,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
@@ -524,27 +532,26 @@
       <a href="#coding" class="btn-secondary">See My Projects →</a>
     </div>
     <div class="hero-stats">
-      <div>
+      <div class="stat-item">
         <div class="stat-num">15<span>+</span></div>
         <div class="stat-label">Years Experience</div>
       </div>
-      <div>
+      <div class="stat-item">
         <div class="stat-num">7<span>+</span></div>
         <div class="stat-label">Companies Supported</div>
       </div>
-      <div>
+      <div class="stat-item">
         <div class="stat-num">200<span>+</span></div>
         <div class="stat-label">Monthly Sessions Scaled</div>
       </div>
-      <div>
-        <div class="stat-num">11<span>+</span></div>
+      <div class="stat-item">
+        <div class="stat-num">12<span>+</span></div>
         <div class="stat-label">Weeks of Coding</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
 <section id="services">
   <div class="section-label">What I Do</div>
   <div class="section-title">One person.<br>Many capabilities.</div>
@@ -583,7 +590,6 @@
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-label">Work History</div>
   <div class="section-title">Where I've been.</div>
@@ -628,80 +634,86 @@
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="section-label">Skills & Tools</div>
   <div class="section-title">What's in the toolkit.</div>
   <p class="section-sub">A rare combination of operational expertise and growing technical skills — bridging the gap between business and technology.</p>
   <div class="skills-layout reveal">
     <div>
-      <div class="skill-group-title">Operations & Business</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Operations Management</span>
-        <span class="skill-tag">SOP Development</span>
-        <span class="skill-tag">Team Leadership</span>
-        <span class="skill-tag">Training Coordination</span>
-        <span class="skill-tag">Lead Generation</span>
-        <span class="skill-tag">Appointment Setting</span>
-        <span class="skill-tag">Process Improvement</span>
-        <span class="skill-tag">Client Onboarding</span>
-        <span class="skill-tag">Sales Pipeline</span>
-        <span class="skill-tag">Recruitment</span>
+      <div class="skill-group">
+        <div class="skill-group-title">Operations & Business</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Operations Management</span>
+          <span class="skill-tag">SOP Development</span>
+          <span class="skill-tag">Team Leadership</span>
+          <span class="skill-tag">Training Coordination</span>
+          <span class="skill-tag">Lead Generation</span>
+          <span class="skill-tag">Appointment Setting</span>
+          <span class="skill-tag">Process Improvement</span>
+          <span class="skill-tag">Client Onboarding</span>
+          <span class="skill-tag">Sales Pipeline</span>
+          <span class="skill-tag">Recruitment</span>
+        </div>
       </div>
-      <br>
-      <div class="skill-group-title">CRM & Platforms</div>
-      <div class="skill-tags">
-        <span class="skill-tag">HubSpot</span>
-        <span class="skill-tag">Salesforce</span>
-        <span class="skill-tag">GoHighLevel</span>
-        <span class="skill-tag">Zoho CRM</span>
-        <span class="skill-tag">ResQEngage</span>
-        <span class="skill-tag">Asana</span>
-        <span class="skill-tag">Trello</span>
-        <span class="skill-tag">Monday.com</span>
-        <span class="skill-tag">Google Workspace</span>
-        <span class="skill-tag">Slack</span>
+      <div class="skill-group">
+        <div class="skill-group-title">CRM & Platforms</div>
+        <div class="skill-tags">
+          <span class="skill-tag">HubSpot</span>
+          <span class="skill-tag">Salesforce</span>
+          <span class="skill-tag">GoHighLevel</span>
+          <span class="skill-tag">Zoho CRM</span>
+          <span class="skill-tag">ResQEngage</span>
+          <span class="skill-tag">Asana</span>
+          <span class="skill-tag">Trello</span>
+          <span class="skill-tag">Monday.com</span>
+          <span class="skill-tag">Google Workspace</span>
+          <span class="skill-tag">Slack</span>
+        </div>
       </div>
     </div>
     <div>
-      <div class="skill-group-title">Coding & Tech (In Progress 🚀)</div>
-      <div class="skill-tags">
-        <span class="skill-tag code">HTML5</span>
-        <span class="skill-tag code">CSS3</span>
-        <span class="skill-tag code">JavaScript</span>
-        <span class="skill-tag code">React</span>
-        <span class="skill-tag code">ES6+</span>
-        <span class="skill-tag code">GitHub</span>
-        <span class="skill-tag code">GitHub Pages</span>
-        <span class="skill-tag code">Vite</span>
-        <span class="skill-tag code">CSS Animations</span>
-        <span class="skill-tag code">Responsive Design</span>
+      <div class="skill-group">
+        <div class="skill-group-title">Coding & Tech (In Progress 🚀)</div>
+        <div class="skill-tags">
+          <span class="skill-tag code">HTML5</span>
+          <span class="skill-tag code">CSS3</span>
+          <span class="skill-tag code">JavaScript</span>
+          <span class="skill-tag code">React</span>
+          <span class="skill-tag code">ES6+</span>
+          <span class="skill-tag code">useContext</span>
+          <span class="skill-tag code">useReducer</span>
+          <span class="skill-tag code">GitHub</span>
+          <span class="skill-tag code">GitHub Pages</span>
+          <span class="skill-tag code">Vite</span>
+          <span class="skill-tag code">CSS Animations</span>
+          <span class="skill-tag code">Responsive Design</span>
+        </div>
       </div>
-      <br>
-      <div class="skill-group-title">AI & Productivity</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Claude AI</span>
-        <span class="skill-tag">ChatGPT</span>
-        <span class="skill-tag">Gemini</span>
-        <span class="skill-tag">Canva</span>
-        <span class="skill-tag">Grammarly</span>
-        <span class="skill-tag">Zoom</span>
+      <div class="skill-group">
+        <div class="skill-group-title">AI & Productivity</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Claude AI</span>
+          <span class="skill-tag">ChatGPT</span>
+          <span class="skill-tag">Gemini</span>
+          <span class="skill-tag">Canva</span>
+          <span class="skill-tag">Grammarly</span>
+          <span class="skill-tag">Zoom</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CODING PROJECTS -->
 <section id="coding">
   <div class="section-label">My Projects</div>
   <div class="section-title">Built from scratch.</div>
-  <p class="section-sub">Real projects I've built and deployed live — all self-taught in 11 weeks. Just getting started.</p>
+  <p class="section-sub">Real projects I've built and deployed live — all self-taught in 12 weeks. Just getting started.</p>
   <div class="coding-grid reveal">
     <div class="project-card">
       <div class="project-header">
-        <div class="project-icon">💊</div>
+        <div class="project-icon">🏥</div>
         <div class="project-links">
-          <a href="https://molanodionne83.github.io/my-react-app/" target="_blank">Live ↗</a>
+          <a href="https://molanodionne83.github.io/my-react-app/" target="_blank" rel="noopener noreferrer">Live ↗</a>
         </div>
       </div>
       <div class="project-body">
@@ -720,7 +732,7 @@
       <div class="project-header">
         <div class="project-icon">🌐</div>
         <div class="project-links">
-          <a href="https://molanodionne83.github.io/website/" target="_blank">Live ↗</a>
+          <a href="https://molanodionne83.github.io/website/" target="_blank" rel="noopener noreferrer">Live ↗</a>
         </div>
       </div>
       <div class="project-body">
@@ -739,12 +751,12 @@
       <div class="project-header">
         <div class="project-icon">🧮</div>
         <div class="project-links">
-          <a href="https://molanodionne83.github.io/website/calculator.html" target="_blank">Live ↗</a>
+          <a href="https://molanodionne83.github.io/website/calculator.html" target="_blank" rel="noopener noreferrer">Live ↗</a>
         </div>
       </div>
       <div class="project-body">
         <h3>ROI Calculator</h3>
-        <p>An interactive ROI calculator built with JavaScript. Users input their numbers and instantly see return on investment calculations — practical tool for CPR training businesses.</p>
+        <p>An interactive ROI calculator built with JavaScript. Users input their numbers and instantly see return on investment calculations — a practical tool for CPR training businesses.</p>
         <div class="project-tech">
           <span class="tech-badge">HTML5</span>
           <span class="tech-badge">CSS3</span>
@@ -756,7 +768,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="section-label">Get In Touch</div>
   <div class="section-title">Let's work together.</div>
@@ -766,39 +777,39 @@
       <div class="contact-details">
         <div class="contact-item">
           <div class="ci-icon">📧</div>
-          <div>dionnemolano83@yahoo.com</div>
+          <a href="mailto:dionnemolano83@yahoo.com">dionnemolano83@yahoo.com</a>
         </div>
         <div class="contact-item">
           <div class="ci-icon">📱</div>
-          <div>+63 909 745 0088</div>
+          <a href="tel:+639097450088">+63 909 745 0088</a>
         </div>
         <div class="contact-item">
           <div class="ci-icon">📍</div>
-          <div>South Cotabato, Philippines</div>
+          <span>South Cotabato, Philippines</span>
         </div>
         <div class="contact-item">
           <div class="ci-icon">🕐</div>
-          <div>Available Mon–Fri, 9AM–4PM ET</div>
+          <span>Available Mon–Fri, 9AM–4PM ET</span>
         </div>
         <div class="contact-item">
           <div class="ci-icon">💼</div>
-          <a href="https://www.linkedin.com/in/dionne-molano-253bb8ba" target="_blank" style="color: var(--accent); text-decoration:none;">LinkedIn Profile ↗</a>
+          <a href="https://www.linkedin.com/in/dionne-molano-253bb8ba" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">LinkedIn Profile ↗</a>
         </div>
       </div>
     </div>
     <div class="contact-form">
       <div class="form-group">
-        <label>YOUR NAME</label>
-        <input type="text" id="nameField" placeholder="Enter your name" />
+        <label for="nameField">YOUR NAME</label>
+        <input type="text" id="nameField" placeholder="Enter your name" autocomplete="name" />
       </div>
       <div class="form-group">
-        <label>YOUR EMAIL</label>
-        <input type="email" id="emailField" placeholder="Enter your email" />
+        <label for="emailField">YOUR EMAIL</label>
+        <input type="email" id="emailField" placeholder="Enter your email" autocomplete="email" />
       </div>
       <div class="form-group">
-        <label>YOUR MESSAGE</label>
-        <textarea id="messageField" placeholder="Tell me about your project or role..." oninput="countChars()"></textarea>
-        <div class="char-counter" id="charCount">200 characters remaining</div>
+        <label for="messageField">YOUR MESSAGE</label>
+        <textarea id="messageField" placeholder="Tell me about your project or role..." maxlength="500" oninput="countChars()"></textarea>
+        <div class="char-counter" id="charCount">0 / 500 characters</div>
       </div>
       <button class="submit-btn" onclick="validateForm()">Send Message →</button>
     </div>
@@ -811,52 +822,70 @@
     <a href="#home">Home</a>
     <a href="#services">Services</a>
     <a href="#contact">Contact</a>
-    <a href="https://github.com/molanodionne83" target="_blank">GitHub ↗</a>
+    <a href="https://github.com/molanodionne83" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
   </div>
 </footer>
 
 <script>
   // Loader
-  window.addEventListener('load', () => {
+  window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
-      document.getElementById('loader').classList.add('hidden');
-    }, 1600);
+      const loader = document.getElementById('loader');
+      if (loader) loader.classList.add('hidden');
+    }, 1400);
   });
 
   // Nav scroll
   window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-  });
+    const nav = document.getElementById('navbar');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
 
   // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target); // stop watching once visible
+      }
+    });
   }, { threshold: 0.1 });
-  reveals.forEach(r => observer.observe(r));
+  document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
 
-  // Char counter
+  // Character counter — enforced by maxlength="500"
   const countChars = () => {
-    const msg = document.getElementById('messageField').value;
-    const remaining = 200 - msg.length;
+    const msg = document.getElementById('messageField');
     const el = document.getElementById('charCount');
-    el.textContent = `${remaining} characters remaining`;
-    el.style.color = remaining < 20 ? '#ff4444' : remaining < 50 ? '#ff8800' : 'var(--text-muted)';
+    if (!msg || !el) return;
+    const len = msg.value.length;
+    el.textContent = `${len} / 500 characters`;
+    el.style.color = len >= 450 ? '#ff4444' : len >= 350 ? '#ff8800' : 'var(--text-muted)';
   };
 
-  // Form validate
+  // Form validation
   const validateForm = () => {
-    const name = document.getElementById('nameField').value.trim();
-    const email = document.getElementById('emailField').value.trim();
-    const message = document.getElementById('messageField').value.trim();
-    if (!name || !email || !message) { alert('Please fill in all fields!'); return; }
+    const name = document.getElementById('nameField')?.value.trim();
+    const email = document.getElementById('emailField')?.value.trim();
+    const message = document.getElementById('messageField')?.value.trim();
+
+    if (!name || !email || !message) {
+      alert('Please fill in all fields before sending.');
+      return;
+    }
+
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    if (!emailPattern.test(email)) { alert('Please enter a valid email address!'); return; }
-    alert(`Thank you ${name}! Your message has been received. I'll get back to you soon!`);
+    if (!emailPattern.test(email)) {
+      alert('Please enter a valid email address (e.g. name@email.com).');
+      return;
+    }
+
+    alert(`Thank you, ${name}! Your message has been received. I'll get back to you soon!`);
+
     document.getElementById('nameField').value = '';
     document.getElementById('emailField').value = '';
     document.getElementById('messageField').value = '';
-    document.getElementById('charCount').textContent = '200 characters remaining';
+    const counter = document.getElementById('charCount');
+    if (counter) { counter.textContent = '0 / 500 characters'; counter.style.color = 'var(--text-muted)'; }
   };
 </script>
 </body>
